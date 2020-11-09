@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Product|Page</title>
+</head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="{% static 'store/css/product.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="../">Products</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  	
+    <ul class="navbar-nav mr-auto"><li class="nav-item active">
+        <a class="nav-link" href="../">Home <span class="sr-only">(current)</span></a>
+      </li>
+  </ul>
+    
+  </div>
+</nav>
+<!-- product section -->
+<section>
+	<div class="container-fluid">
+		<div class="row"><div class="col-lg-12 col-sm-12"></div></div>
+		<div class="row pro-img">
+			<div class="col-lg-6 col-sm-12"><img src="{% static 'store/images/iphone.png' %}" class="img-responsive" style="max-width: 80% !important; max-height: 80% !important;"></div>
+			<div class="col-lg-6 col-sm-12">
+				<div class="jumbotron">
+					<h1 style="font-size: 80px;">Sammy</h1>
+					{% for product in products %}
+						{% if product.product_id == "2" %}
+					<h2 style="padding-top: 5%; padding-bottom: 5%;">priny {{ product.product_description }}</h2>
+						{% endif %}
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</section>
+<!-- reviews section -->
+<div class="container-fluid" style="padding-bottom: 35px; padding-left: 50px; padding-right: 50px;"><h1 class="center" style="width: 100% !important; border-style: ridge; border-color: grey; border-width: 5px; border-right: 0; border-left: 0;">Reviews<button class="btn btn-danger" style="margin-left: 75%; margin-bottom: 15px; margin-top: 15px; padding: 15px; border-radius: 15px;">
+		
+	Review this item</button></h1>
+	
+</div>
+{% for review in reviews %}
+	{% if review.product_name == "2" %}
+<hr>
+
+<section>
+	<div class="container-fluid" style="padding-left: 50px; padding-right: 50px;">
+		<div class="row">
+			<div class="col-lg-6">
+				<h6>by {{ review.author }}</h6>
+				<h6>from chennai, india</h6>
+			</div>
+			<div class="col-lg-6">
+				<h6 style="text-align: right;">{{ review.date_posted }}</h6>
+				
+			</div>
+		</div>
+		<div>{{ review.review }}</div>
+	</div>
+</section>
+	
+<hr>
+{% endif %}
+{% endfor %}
+<hr>
+<hr>
+
+</body>
+</html>
